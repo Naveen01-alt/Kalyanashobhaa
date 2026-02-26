@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from "../../Components/Navbar.jsx"; 
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import imageCompression from 'browser-image-compression';
+
 import './UserDashboard.css';
 
 // --- SVG ICONS ---
@@ -228,51 +228,44 @@ const UserDashboard = () => {
     }
   };
 
- const submitPhotos = async (e) => {
+   const submitPhotos = async (e) => {
     e.preventDefault();
-    if (!photoFiles.primary) return toast.error("A Primary Profile Photo is required");
-    
+    if (!photoFiles.full || !photoFiles.half) return toast.error("Essential photos required");
     setUploading(true);
-
-    const compressionOptions = {
-        maxSizeMB: 0.2, 
-        maxWidthOrHeight: 800,
-        useWebWorker: true,
-        fileType: "image/jpeg" 
-    };
-
+    const formData = new FormData();
+    formData.append('photos', photoFiles.full);
+    formData.append('photos', photoFiles.half);
+    if (photoFiles.choice) formData.append('photos', photoFiles.choice);
     try {
-        const formData = new FormData();
-        const compressedPrimary = await imageCompression(photoFiles.primary, compressionOptions);
-        formData.append('photos', compressedPrimary);
-        
-        if (photoFiles.secondary) {
-            const compressedSecondary = await imageCompression(photoFiles.secondary, compressionOptions);
-            formData.append('photos', compressedSecondary);
-        }
-        
-        const res = await fetch(`${API_BASE_URL}/upload-photos`, {
-            method: 'POST', 
-            headers: { 'Authorization': localStorage.getItem('token') }, 
-            body: formData
-        });
-        
-        const data = await res.json();
-        if (data.success || res.ok) { 
-            setNeedsPhotos(false); 
-            setShowPhotoModal(false); 
-            toast.success("Photos updated");
-            navigate('/payment-registration');
-        } else { 
-            toast.error(data.message); 
-        }
-    } catch (error) { 
-        console.error("Upload/Compression Error:", error);
-        toast.error("Error compressing or uploading photos"); 
-    } finally { 
-        setUploading(false); 
+      const res = await fetch(`${API_BASE_URL}/upload-photos`, {
+        method: 'POST', headers: { 'Authorization': localStorage.getItem('token') }, body: formData
+      });
+      const data = await res.json();
+      if (data.success || res.ok) { 
+          setNeedsPhotos(false); 
+          setShowPhotoModal(false); 
+          toast.success("Photos updated");
+          // After successful upload, redirect to payment
+          navigate('/payment-registration');
+      } 
+      else { toast.error(data.message); }
+    } catch { toast.error("Network error"); } finally { setUploading(false); }
+  };
+
+  const handleConnect = (profile) => {
+    if (needsPhotos) {
+        setShowPhotoModal(true);
+        return;
+    } 
+    if (!isPremium) {
+       if (regPaymentStatus?.status === 'PendingVerification') toast("Verification in progress");
+       else handleVerifyClick(); // Use shared logic
+       return;
     }
-};
+    setSelectedProfile(profile);
+    setPaymentStep(1);
+    setShowPayModal(true);
+  };
 
   const handleConnect = (profile) => {
     if (needsPhotos) {
