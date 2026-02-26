@@ -1,0 +1,391 @@
+/* --- ADMIN LAYOUT & HEADER --- */
+.ks-admin-page {
+  min-height: 100vh;
+  background-color: var(--ks-bg-input); /* Slightly darker bg for admin dash */
+  padding: 32px 24px 80px;
+}
+
+.ks-admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ks-admin-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--ks-border);
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+}
+
+/* --- BUTTONS (Admin Specific) --- */
+.ks-btn-outline {
+  background: var(--ks-bg-card);
+  border: 1px solid var(--ks-border);
+  color: var(--ks-text-main);
+  padding: 10px 20px;
+  border-radius: var(--ks-radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--ks-transition-smooth);
+  box-shadow: var(--ks-shadow-input);
+}
+
+.ks-btn-outline:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+/* --- PREMIUM TABLE --- */
+.ks-table-card {
+  background: var(--ks-bg-card);
+  border-radius: var(--ks-radius-md);
+  box-shadow: var(--ks-shadow-input);
+  border: 1px solid var(--ks-border);
+  overflow: hidden;
+}
+
+.ks-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.ks-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.ks-table th {
+  padding: 16px 24px;
+  background: #F8FAFC;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ks-text-muted);
+  border-bottom: 1px solid var(--ks-border);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ks-table td {
+  padding: 18px 24px;
+  font-size: 14px;
+  color: var(--ks-text-main);
+  border-bottom: 1px solid #F1F5F9;
+  vertical-align: middle;
+}
+
+.ks-table tbody tr {
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-table tbody tr:hover {
+  background: #F8FAFC;
+}
+
+.ks-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ks-empty-state {
+  padding: 40px;
+  text-align: center;
+  color: var(--ks-text-muted);
+  font-weight: 500;
+}
+
+/* Table Utilities */
+.ks-nowrap { white-space: nowrap; }
+.ks-text-right { text-align: right; }
+.ks-fw-600 { font-weight: 600; }
+.ks-text-xs { font-size: 12px; }
+.ks-text-sm { font-size: 14px; }
+.ks-truncate-text {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ks-action-link {
+  background: none;
+  border: none;
+  color: var(--ks-text-main);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-action-link:hover {
+  color: var(--ks-primary);
+  text-decoration-color: var(--ks-primary);
+}
+
+/* --- STATUS PILLS --- */
+.ks-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--ks-radius-pill);
+}
+
+.ks-badge-resolved {
+  background: #F0FDF4;
+  color: #15803D;
+  border: 1px solid #BBF7D0;
+}
+
+.ks-badge-pending {
+  background: #FFFBEB;
+  color: #D97706;
+  border: 1px solid #FEF3C7;
+}
+
+/* --- MODAL (Frosted Glass & Sleek) --- */
+.ks-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.ks-modal-card {
+  background: var(--ks-bg-card);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  border-radius: var(--ks-radius-lg);
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: scaleUp 0.3s var(--ks-ease-out);
+}
+
+.ks-modal-header {
+  padding: 20px 24px;
+  background: #F8FAFC;
+  border-bottom: 1px solid var(--ks-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ks-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ks-text-main);
+}
+
+.ks-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #94A3B8;
+  cursor: pointer;
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-modal-close:hover {
+  color: var(--ks-primary);
+}
+
+.ks-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.ks-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.ks-info-label {
+  display: block;
+  font-size: 12px;
+  color: var(--ks-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.ks-info-value {
+  font-weight: 600;
+  color: var(--ks-text-main);
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.ks-issue-details-box {
+  background: #F8FAFC;
+  border: 1px solid var(--ks-border);
+  padding: 20px;
+  border-radius: var(--ks-radius-md);
+  margin-bottom: 24px;
+}
+
+.ks-issue-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ks-text-main);
+}
+
+.ks-issue-summary {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ks-text-muted);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.ks-attachment-wrap {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ks-border);
+}
+
+.ks-attachment-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ks-text-main);
+  text-decoration: none;
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-attachment-link:hover {
+  color: var(--ks-primary);
+}
+
+.ks-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 600px) {
+  .ks-admin-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .ks-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- INLINE IMAGE ATTACHMENT --- */
+.ks-attachment-wrap {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ks-border);
+}
+
+/* Replaced link with a toggle button */
+.ks-attachment-toggle {
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ks-text-main);
+  cursor: pointer;
+  padding: 0;
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-attachment-toggle:hover {
+  color: var(--ks-primary);
+}
+
+/* Image container and responsive styling */
+.ks-image-preview-box {
+  margin-top: 16px;
+  border: 1px solid var(--ks-border);
+  border-radius: var(--ks-radius-md);
+  background: var(--ks-bg-body);
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeDown 0.3s var(--ks-ease-out) forwards;
+}
+
+.ks-attached-image {
+  max-width: 100%;
+  max-height: 350px; /* Prevents extremely tall images from breaking the modal */
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--ks-radius-sm);
+  box-shadow: var(--ks-shadow-input);
+}
+
+/* Smooth dropdown animation for the image */
+@keyframes fadeDown {
+  0% { opacity: 0; transform: translateY(-10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* --- SKELETON LOADING ANIMATION --- */
+.ks-skeleton {
+  background: #E2E8F0;
+  background: linear-gradient(90deg, #E2E8F0 25%, #F1F5F9 50%, #E2E8F0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+
+.ks-skeleton-text {
+  height: 14px;
+  width: 100%;
+}
+
+.ks-skeleton-badge {
+  height: 26px;
+  width: 70px;
+  border-radius: 13px; /* Matches standard pill style */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

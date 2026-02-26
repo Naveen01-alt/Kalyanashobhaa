@@ -1,0 +1,268 @@
+/* --- 1. CORE VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Brand Identity */
+  --pmt-red: #D32F2F;
+  --pmt-amber: #FFCA28;
+  
+  /* Modern Clean Palette (Flat) */
+  --pmt-bg: #FFFFFF;          /* Pure White Background */
+  --pmt-header-bg: #F9FAFB;   /* Very Light Gray for Headers */
+  --pmt-text-main: #111827;   /* Sharp Black */
+  --pmt-text-sub: #6B7280;    /* Muted Gray */
+  --pmt-border: #E5E7EB;      /* Clean Borders */
+  
+  /* Status Colors (Pastel Flat) */
+  --pmt-green-bg: #ECFDF5; --pmt-green-text: #059669;
+  --pmt-red-bg: #FEF2F2;   --pmt-red-text: #DC2626;
+  --pmt-amber-bg: #FFFBEB; --pmt-amber-text: #D97706;
+
+  /* Spacing */
+  --pmt-radius: 8px;          /* Minimal radius, not too round */
+  --pmt-transition: all 0.2s ease-in-out;
+}
+
+/* Global Reset */
+.pmt-dashboard * {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- 2. LAYOUT --- */
+.pmt-dashboard {
+  max-width: 1000px;
+  margin: 100px auto 60px; /* Space for Navbar */
+  padding: 0 24px;
+  min-height: 80vh;
+  background-color: var(--pmt-bg);
+}
+
+/* Header Section */
+.pmt-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  gap: 24px;
+}
+
+.pmt-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--pmt-text-main);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* --- 3. FLAT TABS --- */
+.pmt-tabs-wrapper {
+  display: inline-flex;
+  background: var(--pmt-header-bg);
+  padding: 4px;
+  border-radius: var(--pmt-radius);
+  border: 1px solid var(--pmt-border);
+}
+
+.pmt-tab {
+  background: transparent;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--pmt-text-sub);
+  cursor: pointer;
+  transition: var(--pmt-transition);
+}
+
+.pmt-tab:hover {
+  color: var(--pmt-text-main);
+}
+
+.pmt-tab.active {
+  background-color: #FFFFFF;
+  color: var(--pmt-text-main);
+  font-weight: 600;
+  /* Minimal border instead of shadow for active state */
+  border: 1px solid var(--pmt-border); 
+}
+
+/* --- 4. TABLE STRUCTURE (Flat & Bordered) --- */
+.pmt-table-container {
+  /* No Shadow, just a clean border container */
+  border: 1px solid var(--pmt-border);
+  border-radius: var(--pmt-radius);
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.pmt-content { width: 100%; }
+
+/* Row Styling - Using Flex to handle variable columns cleanly */
+.pmt-row {
+  display: flex;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--pmt-border);
+  width: 100%;
+}
+
+.pmt-row:last-child { border-bottom: none; }
+
+/* Header Row */
+.pmt-header-row {
+  background-color: var(--pmt-header-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--pmt-text-sub);
+  letter-spacing: 0.5px;
+}
+
+/* Data Row */
+.pmt-data-row {
+  transition: background-color 0.15s;
+}
+.pmt-data-row:hover { background-color: #FAFAFA; }
+
+/* Column Widths (Flex Basis) */
+.pmt-col { padding: 0 8px; }
+.pmt-col:first-child { padding-left: 0; }
+.pmt-col:last-child { padding-right: 0; text-align: right; }
+
+.pmt-col-date   { flex: 1.5; }
+.pmt-col-amount { flex: 1; }
+.pmt-col-ref    { flex: 2; font-family: monospace; font-size: 0.85rem; color: var(--pmt-text-sub); }
+.pmt-col-user   { flex: 1.5; }
+.pmt-col-status { flex: 1; display: flex; justify-content: flex-end; }
+
+/* Text Styles */
+.pmt-cell-wrap { display: flex; flex-direction: column; }
+
+.pmt-text-primary {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--pmt-text-main);
+}
+
+.pmt-text-secondary {
+  font-size: 0.8rem;
+  color: var(--pmt-text-sub);
+  margin-top: 2px;
+}
+
+.pmt-amount {
+  font-weight: 600;
+  color: var(--pmt-text-main);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Flat Badges */
+.pmt-ref-badge {
+  background: var(--pmt-header-bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--pmt-border);
+}
+
+.pmt-status-pill {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 4px; /* Squarer radius for professional look */
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  line-height: 1;
+}
+
+.pmt-status-pill.success { background: var(--pmt-green-bg); color: var(--pmt-green-text); }
+.pmt-status-pill.failed { background: var(--pmt-red-bg); color: var(--pmt-red-text); }
+.pmt-status-pill.pending { background: var(--pmt-amber-bg); color: var(--pmt-amber-text); }
+
+/* --- 5. SKELETON LOADER --- */
+@keyframes shimmer {
+  0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; }
+}
+.shimmer { animation: shimmer 1.5s infinite; background: #E5E7EB; border-radius: 4px; }
+
+.skeleton-header, .skeleton-row { pointer-events: none; }
+.skeleton-line { height: 100%; display: block; }
+
+/* Empty State */
+.pmt-empty-state {
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--pmt-text-sub);
+  font-size: 0.9rem;
+}
+
+/* --- 6. ANIMATION --- */
+.fade-in { animation: fadeIn 0.4s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- 7. RESPONSIVE DESIGN (Card View) --- */
+@media (max-width: 768px) {
+  .pmt-dashboard {
+    padding: 0 16px;
+    margin-top: 90px;
+  }
+
+  .pmt-title { font-size: 1.5rem; }
+
+  /* Hide Desktop Header */
+  .pmt-header-row { display: none; }
+
+  /* Table Container becomes transparent/borderless on mobile to let cards float */
+  .pmt-table-container {
+    border: none;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  /* Row becomes a Card */
+  .pmt-row.pmt-data-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    background: #FFFFFF;
+    border: 1px solid var(--pmt-border);
+    border-radius: var(--pmt-radius);
+    margin-bottom: 16px;
+    gap: 16px;
+  }
+
+  /* Columns become Rows inside the card */
+  .pmt-col {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    text-align: left;
+  }
+  
+  .pmt-col:last-child { text-align: left; }
+
+  /* Inject Labels via CSS */
+  .pmt-col::before {
+    content: attr(data-label);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--pmt-text-sub);
+    text-transform: uppercase;
+  }
+
+  /* Align values to the right */
+  .pmt-cell-wrap, .pmt-ref-badge, .pmt-amount, .pmt-status-pill {
+    text-align: right;
+  }
+  
+  .pmt-col-status { justify-content: space-between; width: 100%; }
+  
+  /* Specific styling tweaks for mobile readability */
+  .pmt-amount { font-size: 1.1rem; }
+  .pmt-col-ref { font-family: inherit; } 
+  .pmt-ref-badge { border: none; background: transparent; padding: 0; }
+}

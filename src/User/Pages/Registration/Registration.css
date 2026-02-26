@@ -1,0 +1,618 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  /* KalyanaShobha Ultra Premium Palette */
+  --ks-primary: #D32F2F; /* Rich Red */
+  --ks-primary-hover: #B71C1C;
+  --ks-text-main: #0F172A; /* Slate 900 */
+  --ks-text-muted: #64748B; /* Slate 500 */
+  --ks-border: #E2E8F0; /* Slate 200 */
+  --ks-border-focus: #F59E0B; /* Vibrant Amber */
+  --ks-bg-body: #FFFFFF; /* Pure White Background */
+  --ks-bg-card: #FFFFFF;
+  --ks-bg-input: #F1F5F9; /* Soft slate background for resting inputs */
+  
+  /* Progress Bar Amber Palette */
+  --ks-amber-light: #FBBF24;
+  --ks-amber-base: #F59E0B;
+  --ks-amber-dark: #D97706;
+  
+  --ks-radius-pill: 50px; 
+  --ks-radius-lg: 24px;
+  --ks-radius-md: 16px; 
+  --ks-radius-sm: 8px;
+  
+  /* Soft, expensive shadows */
+  --ks-shadow-card: 0 20px 40px -10px rgba(15, 23, 42, 0.05), 0 0 1px rgba(15, 23, 42, 0.1);
+  --ks-shadow-btn: 0 8px 20px -6px rgba(211, 47, 47, 0.3);
+  --ks-shadow-input: 0 2px 4px rgba(15, 23, 42, 0.02);
+  --ks-shadow-focus: 0 4px 20px rgba(211, 47, 47, 0.08); /* Soft red focus glow */
+  
+  /* Apple Spring Easing */
+  --ks-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ks-transition-smooth: all 0.3s var(--ks-ease-out);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--ks-bg-body);
+  color: var(--ks-text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- MAIN WRAPPER (Solid White & Centered Layout) --- */
+.ks-main-wrapper {
+  min-height: 100vh;
+  padding: 40px 20px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Keeps it from cutting off top on small screens */
+  background-color: var(--ks-bg-body);
+}
+
+/* --- FORM CONTAINER --- */
+.ks-auth-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--ks-bg-card);
+  border-radius: var(--ks-radius-lg);
+  box-shadow: var(--ks-shadow-card);
+  border: 1px solid var(--ks-border); /* Visible border for pure white background */
+  position: relative;
+  overflow: hidden;
+  margin: auto; /* Vertically and horizontally centers the card */
+}
+
+/* --- AMBER SHIMMER PROGRESS HEADER --- */
+.ks-progress-header {
+  padding: 32px 36px 0;
+  background: var(--ks-bg-card);
+}
+
+.ks-progress-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ks-amber-dark);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+}
+
+.ks-progress-bar-container {
+  width: 100%;
+  height: 6px;
+  background-color: #F1F5F9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ks-progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--ks-amber-dark), var(--ks-amber-light), var(--ks-amber-dark));
+  background-size: 200% 100%;
+  transition: width 0.8s var(--ks-ease-out);
+  animation: ksAmberShimmer 2.5s infinite linear;
+}
+
+@keyframes ksAmberShimmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* --- CONTENT AREA --- */
+.ks-form-content {
+  padding: 0 36px 36px;
+}
+
+.ks-form-body {
+  padding-top: 24px;
+}
+
+/* --- STEP HEADER & ICONS --- */
+.ks-title-area {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.ks-header-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.ks-icon-blue { background: linear-gradient(135deg, #FFF3E0, #FFE0B2); color: #F57C00; } 
+.ks-icon-purple { background: linear-gradient(135deg, #F5F3FF, #EDE9FE); color: #7C3AED; }
+.ks-icon-green { background: linear-gradient(135deg, #ECFDF5, #D1FAE5); color: #059669; }
+.ks-icon-gold { background: linear-gradient(135deg, #FFFBEB, #FEF3C7); color: #D97706; }
+.ks-icon-red { background: linear-gradient(135deg, #FEF2F2, #FEE2E2); color: #DC2626; }
+.ks-icon-pink { background: linear-gradient(135deg, #FDF2F8, #FCE7F3); color: #DB2777; }
+.ks-icon-indigo { background: linear-gradient(135deg, #EEF2FF, #E0E7FF); color: #4F46E5; }
+.ks-icon-teal { background: linear-gradient(135deg, #F0FDFA, #CCFBF1); color: #0D9488; }
+.ks-icon-dark { background: linear-gradient(135deg, #F8FAFC, #F1F5F9); color: #334155; }
+
+.ks-step-heading, .ks-step-sub {
+  display: none; 
+}
+
+/* --- TYPOGRAPHY & LABELS --- */
+.ks-group-title {
+  font-size: 26px; 
+  font-weight: 600;
+  color: var(--ks-text-main);
+  text-transform: none; 
+  letter-spacing: -0.5px;
+  margin: 32px 0 20px;
+}
+
+.ks-label {
+  display: block;
+  font-size: 15px; 
+  font-weight: 600;
+  color: var(--ks-text-main);
+  margin-bottom: 10px;
+  letter-spacing: -0.2px;
+}
+
+/* --- STEP 1: MODERN PILL BUTTONS --- */
+.ks-grid-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.ks-opt-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--ks-bg-card);
+  border: 1px solid #E2E8F0;
+  border-radius: var(--ks-radius-pill); 
+  padding: 10px 20px 10px 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ks-text-muted);
+  cursor: pointer;
+  transition: var(--ks-transition-smooth);
+  box-shadow: none;
+}
+
+.ks-opt-btn::before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid #CBD5E1;
+  margin-right: 10px;
+  background-color: transparent;
+  transition: var(--ks-transition-smooth);
+  box-sizing: border-box;
+}
+
+.ks-opt-btn:hover {
+  border-color: #CBD5E1;
+  color: var(--ks-text-main);
+}
+
+.ks-opt-btn.active {
+  background: #F1F5F9; 
+  border-color: transparent;
+  color: var(--ks-text-main);
+}
+
+.ks-opt-btn.active::before {
+  background-color: var(--ks-primary);
+  border-color: var(--ks-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* --- STEPS 2-8: PREMIUM APP INPUTS & SELECTS --- */
+.ks-input-block {
+  margin-bottom: 24px;
+}
+
+.ks-control {
+  width: 100%;
+  padding: 16px 18px; 
+  font-size: 16px; 
+  font-family: inherit;
+  font-weight: 500;
+  background-color: var(--ks-bg-input); 
+  border: 1.5px solid transparent; 
+  border-radius: var(--ks-radius-md); 
+  color: var(--ks-text-main);
+  transition: var(--ks-transition-smooth);
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  box-shadow: var(--ks-shadow-input);
+}
+
+.ks-control:focus {
+  outline: none;
+  background-color: #FFFFFF;
+  border-color: var(--ks-primary);
+  box-shadow: var(--ks-shadow-focus);
+}
+
+.ks-control::placeholder {
+  color: #94A3B8;
+  font-weight: 400;
+}
+
+.ks-select-box {
+  position: relative;
+}
+
+.ks-select-box select {
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+.ks-select-box svg {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748B;
+  pointer-events: none;
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-select-box select:focus + svg {
+  color: var(--ks-primary);
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.ks-password-wrap {
+  position: relative;
+}
+.ks-password-wrap input {
+  padding-right: 50px;
+}
+.ks-pwd-toggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 6px;
+  transition: var(--ks-transition-smooth);
+}
+.ks-pwd-toggle:hover {
+  color: var(--ks-text-main);
+}
+
+/* --- RESPONSIVE CSS GRID FOR DOB --- */
+.ks-dob-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr; 
+  gap: 12px;
+}
+
+.ks-dob-input {
+  width: 100%;
+  padding: 16px 10px;
+  font-size: 16px; 
+  font-family: inherit;
+  font-weight: 500;
+  text-align: center;
+  background-color: var(--ks-bg-input);
+  border: 1.5px solid transparent;
+  border-radius: var(--ks-radius-md);
+  color: var(--ks-text-main);
+  transition: var(--ks-transition-smooth);
+  box-shadow: var(--ks-shadow-input);
+  box-sizing: border-box;
+}
+
+.ks-dob-input:focus {
+  outline: none;
+  background-color: #FFFFFF;
+  border-color: var(--ks-primary);
+  box-shadow: var(--ks-shadow-focus);
+}
+
+/* Error States */
+.ks-error-state .ks-control,
+.ks-error-state .ks-dob-input {
+  border-color: #EF4444;
+  background-color: #FEF2F2;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+.ks-error-text {
+  display: block;
+  font-size: 13px;
+  color: #EF4444;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* --- STEP 9: SIGNATURE & CUSTOM TERMS CHECKBOX --- */
+.ks-sig-instruct {
+  font-size: 15px;
+  color: var(--ks-text-muted);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Fixed Signature Wrapper */
+.ks-sig-wrapper {
+  border: 2px dashed #CBD5E1;
+  border-radius: 20px;
+  background: #F8FAFC;
+  overflow: hidden;
+  margin-bottom: 16px;
+  transition: var(--ks-transition-smooth);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ks-sig-wrapper:hover {
+  border-color: var(--ks-primary);
+  background: #FFFFFF;
+}
+
+/* Fixed Signature Canvas for Mobile Drawing */
+.ks-sig-canvas {
+  max-width: 100%;
+  touch-action: none;
+}
+
+.ks-clear-sig {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ks-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: var(--ks-radius-sm);
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-clear-sig:hover {
+  color: #EF4444;
+  background: #FEF2F2;
+}
+
+.ks-divider {
+  height: 1px;
+  background: #E2E8F0;
+  margin: 32px 0;
+}
+
+/* Custom Checkbox Design */
+.ks-terms-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #FFFFFF;
+  padding: 20px;
+  border-radius: var(--ks-radius-md);
+  border: 1px solid #E2E8F0;
+  box-shadow: var(--ks-shadow-input);
+  cursor: pointer;
+}
+
+.ks-terms-wrap input[type="checkbox"] {
+  display: none; 
+}
+
+.ks-terms-label {
+  font-size: 14px;
+  color: var(--ks-text-main);
+  line-height: 1.6;
+  font-weight: 500;
+  cursor: pointer;
+  display: grid;              /* Changed from flex to grid */
+  grid-template-columns: 22px 1fr; /* Locks checkbox width, text takes rest */
+  gap: 14px;                  /* Space between checkbox and text */
+  align-items: start;
+}
+
+.ks-terms-label::before {
+  content: '';
+  display: block;             
+  width: 22px;
+  height: 22px;
+  border-radius: 6px; 
+  border: 1.5px solid #CBD5E1;
+  margin-right: 0;            /* Removed because we are using grid gap now */
+  background-color: var(--ks-bg-input);
+  transition: var(--ks-transition-smooth);
+  box-sizing: border-box;
+  margin-top: 2px;
+}
+
+.ks-terms-wrap input[type="checkbox"]:checked + .ks-terms-label::before {
+  background-color: var(--ks-primary);
+  border-color: var(--ks-primary);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: 12px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ks-highlight-red {
+  color: var(--ks-primary);
+  font-weight: 700;
+}
+
+/* --- ACTION FOOTER --- */
+.ks-action-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.ks-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--ks-radius-pill); 
+  cursor: pointer;
+  transition: var(--ks-transition-smooth);
+  border: none;
+}
+
+.ks-btn-primary {
+  background: var(--ks-primary);
+  color: #FFFFFF;
+  box-shadow: var(--ks-shadow-btn);
+  flex-grow: 1; 
+  justify-content: center;
+}
+
+.ks-btn-primary:hover:not(:disabled) {
+  background: var(--ks-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(211, 47, 47, 0.4);
+}
+
+.ks-btn-primary:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.ks-btn-primary:disabled {
+  background: #FCA5A5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.ks-btn-secondary {
+  background-color: transparent;
+  color: var(--ks-text-muted);
+  border: none; 
+  padding: 16px 16px 16px 0;
+}
+
+.ks-btn-secondary:hover {
+  color: var(--ks-text-main);
+}
+
+/* --- PREMIUM ANIMATIONS (Smooth Slide & Scale) --- */
+.ks-slide-fwd { animation: slideInRight 0.5s var(--ks-ease-out) forwards; }
+.ks-slide-bck { animation: slideInLeft 0.5s var(--ks-ease-out) forwards; }
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-30px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.ks-slide-fwd .ks-stagger, 
+.ks-slide-bck .ks-stagger {
+  opacity: 0;
+  animation: fadeUp 0.5s var(--ks-ease-out) forwards;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.ks-stagger:nth-child(1) { animation-delay: 0.05s; }
+.ks-stagger:nth-child(2) { animation-delay: 0.1s; }
+.ks-stagger:nth-child(3) { animation-delay: 0.15s; }
+.ks-stagger:nth-child(4) { animation-delay: 0.2s; }
+.ks-stagger:nth-child(5) { animation-delay: 0.25s; }
+.ks-stagger:nth-child(6) { animation-delay: 0.3s; }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 500px) {
+  .ks-main-wrapper {
+    padding: 70px 0 0 0; 
+    background-color: var(--ks-bg-body); 
+    display: block; /* Ensures natural scrolling on mobile */
+  }
+  
+  .ks-auth-card {
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    min-height: calc(100vh - 70px);
+    margin-top: 0;
+  }
+  
+  .ks-progress-header {
+    padding: 12px 24px 0; 
+  }
+  
+  .ks-header-icon {
+    width: 60px; 
+    height: 60px;
+    margin-bottom: 16px;
+  }
+
+  .ks-title-area {
+    margin-bottom: 24px;
+  }
+
+  .ks-group-title {
+    font-size: 22px; 
+    margin: 20px 0 16px;
+  }
+
+  .ks-opt-btn {
+    font-size: 14px; 
+    padding: 8px 16px 8px 10px;
+  }
+  
+  .ks-opt-btn::before {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .ks-form-content {
+    padding: 0 24px 24px;
+  }
+  
+  .ks-action-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #FFFFFF;
+    padding: 16px 24px;
+    margin-top: 0;
+    z-index: 10;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(226, 232, 240, 0.5);
+  }
+  
+  .ks-form-body {
+    padding-bottom: 90px;
+  }
+  
+  .ks-btn {
+    width: 100%;
+  }
+}
+

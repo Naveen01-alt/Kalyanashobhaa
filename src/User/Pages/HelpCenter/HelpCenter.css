@@ -1,0 +1,130 @@
+/* Inherits root variables from your main CSS (e.g., Registration.css) */
+
+.ks-help-card {
+  max-width: 600px; /* Slightly wider for textareas */
+}
+
+.ks-help-header {
+  padding: 36px 36px 24px;
+  border-bottom: 1px solid var(--ks-border);
+  margin-bottom: 24px;
+}
+
+.ks-help-header .ks-group-title {
+  margin: 0 0 8px 0;
+  text-align: left;
+}
+
+.ks-help-header .ks-step-sub {
+  color: var(--ks-text-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.ks-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.5;
+}
+
+/* Custom File Upload Zone (Minimalist & Corporate) */
+.ks-file-upload-zone {
+  border: 2px dashed #CBD5E1;
+  border-radius: var(--ks-radius-md);
+  background-color: #F8FAFC;
+  padding: 24px;
+  text-align: center;
+  transition: var(--ks-transition-smooth);
+}
+
+.ks-file-upload-zone:hover {
+  border-color: var(--ks-text-muted);
+  background-color: var(--ks-bg-body);
+}
+
+.ks-file-upload-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.ks-file-btn {
+  background: var(--ks-bg-body);
+  border: 1px solid var(--ks-border);
+  padding: 6px 14px;
+  border-radius: var(--ks-radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ks-text-main);
+  cursor: pointer;
+  transition: var(--ks-transition-smooth);
+  box-shadow: var(--ks-shadow-input);
+}
+
+.ks-file-btn:hover {
+  border-color: var(--ks-text-muted);
+  color: var(--ks-text-main);
+}
+
+.ks-file-text {
+  font-size: 14px;
+  color: var(--ks-text-muted);
+}
+
+.ks-file-hint {
+  font-size: 12px;
+  color: var(--ks-text-muted);
+  margin: 0;
+}
+
+.ks-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Alert Boxes */
+.ks-alert {
+  margin: 0 36px 24px;
+  padding: 14px 16px;
+  border-radius: var(--ks-radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  border-left: 4px solid;
+}
+
+.ks-alert-error {
+  background-color: #FEF2F2;
+  color: #B91C1C;
+  border-left-color: #EF4444;
+}
+
+.ks-alert-success {
+  background-color: #F0FDF4;
+  color: #15803D;
+  border-left-color: #22C55E;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 500px) {
+  .ks-help-header {
+    padding: 24px 24px 16px;
+  }
+  .ks-alert {
+    margin: 0 24px 20px;
+  }
+  .ks-file-upload-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

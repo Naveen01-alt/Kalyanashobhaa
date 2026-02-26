@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,600&family=Poppins:wght@300;400;500&display=swap');
+
+:root {
+  --hb-gold: #fbd040;
+  --hb-gold-gradient: linear-gradient(135deg, #fbd040, #D32F2F, #fbd040, #fbd040, #fbd040);
+  --hb-black: #050505;      
+  --hb-white: #FFFFFF;
+  --hb-nav-height: 80px; 
+}
+
+/* =========================================
+   1. LAYOUT & CONTAINER
+   ========================================= */
+.hb-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--hb-nav-height));
+  min-height: 600px; 
+  background-color: var(--hb-black); 
+  display: flex;
+  justify-content: flex-start; /* Desktop: Align Left */
+  align-items: center; 
+  overflow: hidden;
+}
+
+/* =========================================
+   2. TEXTURE & STARS
+   ========================================= */
+.hb-texture-grain {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 2;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.hb-star-layer {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 3;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hb-stars-sm {
+  width: 1px; height: 1px;
+  background: transparent;
+  box-shadow: 10vw 20vh #fff, 30vw 80vh #fff, 80vw 10vh #fff, 50vw 50vh #fff;
+  animation: hbStarFloat 120s linear infinite;
+}
+
+.hb-stars-md {
+  width: 2px; height: 2px;
+  background: transparent;
+  box-shadow: 15vw 15vh #D4AF37, 60vw 30vh #D4AF37, 25vw 85vh #D4AF37;
+  animation: hbStarFloat 80s linear infinite;
+  filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.9));
+}
+
+.hb-stars-sm::after, .hb-stars-md::after {
+  content: " ";
+  position: absolute;
+  top: 100vh; width: inherit; height: inherit;
+  background: inherit; box-shadow: inherit;
+}
+
+@keyframes hbStarFloat {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100vh); }
+}
+
+/* =========================================
+   3. BACKGROUND IMAGE
+   ========================================= */
+.hb-image-wrapper {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.hb-background-img {
+  width: 100%; height: 100%;
+  object-fit: cover; 
+  /* DESKTOP: Focus center-right (for the landscape image) */
+  object-position: center right; 
+  opacity: 1; 
+  transition: opacity 0.5s ease;
+}
+
+/* GRADIENT OVERLAY (Desktop: Left to Right) */
+.hb-overlay-gradient {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(
+    90deg, 
+    rgba(5,5,5,0.95) 0%,   
+    rgba(5,5,5,0.6) 45%,   
+    rgba(5,5,5,0.0) 100%   
+  );
+  z-index: 1;
+}
+
+/* =========================================
+   4. TYPOGRAPHY & ANIMATIONS
+   ========================================= */
+.hb-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 40px;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hb-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.1;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: var(--hb-white);
+  letter-spacing: -0.02em;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.hb-text-mask { overflow: hidden; display: block; }
+
+.hb-reveal {
+  display: block;
+  transform: translateY(100%);
+  opacity: 0;
+  animation: hbSlideUp 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.hb-gold-text {
+  background: var(--hb-gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+  padding-right: 10px;
+}
+
+.hb-subtitle {
+  font-family: 'Poppins', sans-serif;
+  color: #e0e0e0;
+  font-weight: 300;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 24px 0 0 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.hb-delay-1 { animation-delay: 0.2s; }
+.hb-delay-2 { animation-delay: 0.4s; }
+.hb-delay-3 { animation-delay: 0.8s; }
+.hb-delay-4 { animation-delay: 1.2s; }
+
+@keyframes hbSlideUp {
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes hbFadeIn {
+  to { opacity: 1; }
+}
+
+/* =========================================
+   5. BUTTONS
+   ========================================= */
+.hb-action-wrapper {
+  margin-top: 40px;
+  opacity: 0;
+  animation: hbFadeIn 1s ease forwards;
+}
+
+.hb-glass-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 18px 50px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.hb-btn-label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+}
+
+.hb-glass-btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
+}
+
+/* =========================================
+   6. MOBILE OPTIMIZATION
+   ========================================= */
+@media screen and (max-width: 900px) {
+  
+  .hb-container {
+    height: 90vh; 
+    align-items: flex-end; 
+    justify-content: center;
+    padding-bottom: 80px; 
+  }
+
+  /* Since we have a specific Mobile Image now, we center it. */
+  .hb-background-img {
+    object-position: center top; 
+  }
+
+  /* Mobile Gradient: Top to Bottom */
+  .hb-overlay-gradient {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.0) 0%,    
+      rgba(0,0,0,0.0) 50%,   
+      rgba(0,0,0,0.6) 70%,   
+      rgba(0,0,0,0.95) 90%, 
+      rgba(0,0,0,1) 100%
+    );
+  }
+
+  .hb-content {
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .hb-title {
+    font-size: 3rem;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.9);
+  }
+
+  .hb-subtitle {
+    font-size: 1rem;
+    margin-top: 15px;
+    color: #f0f0f0;
+    text-shadow: 0 2px 10px rgba(0,0,0,1);
+  }
+
+  .hb-desktop-break { display: none; }
+
+  .hb-glass-btn {
+    width: 100%; 
+    padding: 16px 40px;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+  }
+}

@@ -1,0 +1,388 @@
+/* --- 1. CORE VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Brand Colors */
+  --ic-red: #D32F2F;
+  --ic-red-hover: #b71c1c;
+  --ic-amber: #FFCA28;
+  
+  /* Premium Neutrals */
+  --ic-bg: #FFFFFF;          /* Pure White Page */
+  --ic-surface: #FFFFFF;     /* White Cards */
+  --ic-text-main: #1F2937;   /* Charcoal Black */
+  --ic-text-sub: #6B7280;    /* Cool Gray */
+  --ic-border: #F3F4F6;      /* Very subtle border */
+  --ic-divider: #E5E7EB;
+  
+  /* UX Metrics */
+  --ic-radius: 12px;
+  --ic-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05); /* Soft, luxurious float */
+  --ic-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Global Reset */
+.ic-container * {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- 2. LAYOUT --- */
+.ic-container {
+  max-width: 1100px;
+  margin: 100px auto 60px; /* Navbar spacing */
+  padding: 0 24px;
+  min-height: 80vh;
+  background-color: var(--ic-bg);
+}
+
+/* --- 3. HEADER SECTION --- */
+.ic-nav-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 48px;
+  gap: 24px;
+}
+
+/* BRAND RED HEADING */
+.ic-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: black; /* Updated to Red */
+  margin: 0;
+  letter-spacing: -0.5px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Optional: Subtle underline decoration */
+.ic-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: var(--ic-amber);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* Modern Segmented Tabs */
+.ic-tabs {
+  display: inline-flex;
+  background: #F9FAFB;
+  padding: 6px;
+  border-radius: 50px;
+  border: 1px solid var(--ic-divider);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+}
+
+.ic-tab {
+  background: transparent;
+  border: none;
+  padding: 10px 32px;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ic-text-sub);
+  cursor: pointer;
+  transition: var(--ic-transition);
+  position: relative;
+  white-space: nowrap;
+}
+
+.ic-tab:hover {
+  color: var(--ic-text-main);
+}
+
+.ic-tab.active {
+  background-color: #FFFFFF;
+  color: var(--ic-text-main);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transform: scale(1.02);
+}
+
+/* Notification Dot */
+.ic-dot {
+  position: absolute;
+  top: 10px;
+  right: 18px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--ic-red);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+/* --- 4. CARD GRID --- */
+.ic-content { width: 100%; }
+
+.ic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* --- 5. PREMIUM CARD STYLING --- */
+.ic-card {
+  background: var(--ic-surface);
+  border: 1px solid var(--ic-border);
+  border-radius: var(--ic-radius);
+  padding: 0; /* Content padding handled inside sections */
+  display: flex;
+  flex-direction: column;
+  transition: var(--ic-transition);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--ic-shadow);
+}
+
+.ic-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.1);
+  border-color: #E5E7EB;
+}
+
+/* Card Header */
+.ic-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-bottom: 1px solid var(--ic-border);
+  background: linear-gradient(to bottom, #FFFFFF, #FAFAFA);
+}
+
+.ic-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.ic-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ic-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ic-text-main);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.ic-role {
+  font-size: 0.85rem;
+  color: var(--ic-text-sub);
+  margin: 0;
+}
+
+/* Status Badges */
+.ic-badge.connected {
+  display: inline-block;
+  font-size: 0.65rem;
+  background: #ECFDF5;
+  color: #059669;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+
+/* Card Body */
+.ic-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: #FFFFFF;
+}
+
+.ic-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--ic-border);
+}
+
+.ic-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* PRO LABELS */
+.ic-label {
+  color: #9CA3AF; /* Lighter gray */
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px; /* Spaced out caps */
+}
+
+.ic-value {
+  color: var(--ic-text-main);
+  font-weight: 500;
+  text-align: right;
+}
+
+.ic-value.highlight {
+  color: var(--ic-text-main);
+  font-family: monospace;
+  background: #F3F4F6;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.ic-value.small-text {
+  font-size: 0.85rem;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Status Pills */
+.ic-status-pill {
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.ic-status-pill.pending { background: #FFFBEB; color: #D97706; }
+.ic-status-pill.declined { background: #FEF2F2; color: #DC2626; }
+
+/* Actions Footer */
+.ic-actions {
+  padding: 16px 24px;
+  display: flex;
+  gap: 12px;
+  background: #FAFAFA;
+  border-top: 1px solid var(--ic-border);
+}
+
+.ic-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-accept {
+  background-color: var(--ic-text-main); /* Black for strong action */
+  color: white;
+}
+.btn-accept:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+}
+
+.btn-decline {
+  background-color: white;
+  border: 1px solid var(--ic-divider);
+  color: var(--ic-text-sub);
+}
+.btn-decline:hover {
+  border-color: var(--ic-red);
+  color: var(--ic-red);
+  background: #FFF;
+}
+
+/* --- 6. SKELETON & EMPTY STATES --- */
+.skeleton-card { pointer-events: none; padding: 24px; }
+.sk-header { display: flex; gap: 16px; margin-bottom: 24px; }
+.sk-avatar { width: 50px; height: 50px; border-radius: 50%; flex-shrink: 0; }
+.sk-info { flex: 1; display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
+.sk-line { height: 10px; border-radius: 4px; background: #F3F4F6; }
+.w-60 { width: 60%; } .w-40 { width: 40%; } .w-80 { width: 80%; } .w-50 { width: 50%; }
+.sk-body { display: flex; flex-direction: column; gap: 12px; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; } 100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: #f6f7f8;
+  background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+  background-repeat: no-repeat;
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.ic-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--ic-text-sub);
+  font-size: 1rem;
+}
+
+/* Toast Customization */
+.toast-confirm {
+  display: flex; flex-direction: column; gap: 12px; align-items: center; font-size: 0.9rem;
+}
+.toast-actions { display: flex; gap: 12px; }
+.toast-btn { padding: 6px 16px; border-radius: 6px; border: none; cursor: pointer; font-weight: 600; font-size: 0.8rem; }
+.toast-btn.confirm { background: var(--ic-red); color: white; }
+.toast-btn.cancel { background: #E5E7EB; color: #374151; }
+
+/* Animation */
+.fade-in { animation: fadeIn 0.4s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* --- 7. RESPONSIVE DESIGN --- */
+@media (max-width: 600px) {
+  .ic-container {
+    padding: 0 16px;
+    margin-top: 90px;
+  }
+  
+  .ic-title { font-size: 1.5rem; }
+
+  .ic-nav-header {
+    margin-bottom: 32px;
+    gap: 20px;
+  }
+
+  .ic-tabs {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+  }
+  
+  .ic-tab {
+    padding: 10px 0;
+    flex: 1;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+  
+  .ic-grid {
+    grid-template-columns: 1fr; /* Stack cards on mobile */
+    gap: 16px;
+  }
+
+  .ic-card {
+    /* Slightly less padding on mobile */
+    border-radius: 12px;
+  }
+}
