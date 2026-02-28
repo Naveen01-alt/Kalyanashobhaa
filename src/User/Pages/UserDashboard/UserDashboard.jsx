@@ -227,18 +227,26 @@ const UserDashboard = () => {
       }));
     }
   };
-
-   const submitPhotos = async (e) => {
+  const submitPhotos = async (e) => {
     e.preventDefault();
-    if (!photoFiles.full || !photoFiles.half) return toast.error("Essential photos required");
+    
+    // 1. Update validation to check for primary and secondary
+    if (!photoFiles.primary || !photoFiles.secondary) {
+        return toast.error("Essential photos required");
+    }
+    
     setUploading(true);
     const formData = new FormData();
-    formData.append('photos', photoFiles.full);
-    formData.append('photos', photoFiles.half);
-    if (photoFiles.choice) formData.append('photos', photoFiles.choice);
+    
+    // 2. Append the correct state values to formData
+    formData.append('photos', photoFiles.primary);
+    formData.append('photos', photoFiles.secondary);
+
     try {
       const res = await fetch(`${API_BASE_URL}/upload-photos`, {
-        method: 'POST', headers: { 'Authorization': localStorage.getItem('token') }, body: formData
+        method: 'POST', 
+        headers: { 'Authorization': localStorage.getItem('token') }, 
+        body: formData
       });
       const data = await res.json();
       if (data.success || res.ok) { 
@@ -249,8 +257,14 @@ const UserDashboard = () => {
           navigate('/payment-registration');
       } 
       else { toast.error(data.message); }
-    } catch { toast.error("Network error"); } finally { setUploading(false); }
+    } catch { 
+        toast.error("Network error"); 
+    } finally { 
+        setUploading(false); 
+    }
   };
+  
+   
 
   const handleConnect = (profile) => {
     if (needsPhotos) {
