@@ -24,7 +24,7 @@ const Footer = () => {
           <ul className="ks-footer-links">
             <li><a href="#home">About us</a></li>
 
- 
+  
           </ul>
         </div>
 
