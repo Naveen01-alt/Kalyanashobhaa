@@ -59,6 +59,11 @@ const Navbar = () => {
             <li className="ks-nav__item">
               <Link to="/vendor" className="ks-nav__link">Vendors</Link>
             </li>
+            
+            {/* --- Help is always visible --- */}
+            <li className="ks-nav__item">
+              <Link to="/help" className="ks-nav__link">Help</Link>
+            </li>
 
             {/* Agent: Only if NOT logged in */}
             {!isLoggedIn && (
@@ -73,7 +78,6 @@ const Navbar = () => {
                 <li className="ks-nav__item"><Link to="/myprofile" className="ks-nav__link">My Profile</Link></li>
                 <li className="ks-nav__item"><Link to="/interests" className="ks-nav__link">Interests</Link></li>
                 <li className="ks-nav__item"><Link to="/payments" className="ks-nav__link">Payments</Link></li>
-
               </>
             )}
           </ul>
@@ -112,17 +116,19 @@ const Navbar = () => {
             
             {/* --- Vendors always visible on Mobile too --- */}
             <li style={{ '--i': 2 }}><Link to="/vendor" onClick={closeMenu}>Vendors</Link></li>
+            
+            {/* --- Help always visible on Mobile too --- */}
+            <li style={{ '--i': 3 }}><Link to="/help" onClick={closeMenu}>Help</Link></li>
 
             {!isLoggedIn && (
-              <li style={{ '--i': 3 }}><Link to="/agent/login" onClick={closeMenu}>Agent</Link></li>
+              <li style={{ '--i': 4 }}><Link to="/agent/login" onClick={closeMenu}>Agent</Link></li>
             )}
 
             {isLoggedIn && (
               <>
-                <li style={{ '--i': 3 }}><Link to="/myprofile" onClick={closeMenu}>My Profile</Link></li>
-                <li style={{ '--i': 4 }}><Link to="/interests" onClick={closeMenu}>Interests</Link></li>
-                <li style={{ '--i': 5 }}><Link to="/payments" onClick={closeMenu}>Payments</Link></li>
-
+                <li style={{ '--i': 4 }}><Link to="/myprofile" onClick={closeMenu}>My Profile</Link></li>
+                <li style={{ '--i': 5 }}><Link to="/interests" onClick={closeMenu}>Interests</Link></li>
+                <li style={{ '--i': 6 }}><Link to="/payments" onClick={closeMenu}>Payments</Link></li>
               </>
             )}
           </ul>
