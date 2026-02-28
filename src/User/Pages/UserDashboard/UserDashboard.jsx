@@ -267,20 +267,7 @@ const UserDashboard = () => {
     setShowPayModal(true);
   };
 
-  const handleConnect = (profile) => {
-    if (needsPhotos) {
-        setShowPhotoModal(true);
-        return;
-    } 
-    if (!isPremium) {
-       if (regPaymentStatus?.status === 'PendingVerification') toast("Verification in progress");
-       else handleVerifyClick();
-       return;
-    }
-    setSelectedProfile(profile);
-    setPaymentStep(1);
-    setShowPayModal(true);
-  };
+  
 
   const submitInterest = async (e) => {
     e.preventDefault();
