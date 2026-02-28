@@ -486,7 +486,8 @@ const UserDashboard = () => {
                     <p className="ud-job">{profile.occupation || profile.job || "Not Specified"}</p>
                     <div className="ud-info-grid">
                       <div className="ud-info-item"><span className="ud-lbl">Education</span><span className="ud-val">{profile.education || "--"}</span></div>
-                      <div className="ud-info-item"><span className="ud-lbl">Community</span><span className="ud-val">{profile.subCommunity || profile.community || "--"}</span></div>
+                      <div className="ud-info-item"><span className="ud-lbl">Community</span><span className="ud-val">{profile.community || "--"}</span></div>
+<div className="ud-info-item"><span className="ud-lbl">Sub-Community</span><span className="ud-val">{profile.subCommunity || "--"}</span></div>
                       <div className="ud-info-item"><span className="ud-lbl">Location</span><span className="ud-val">{profile.location || "--"}</span></div>
                       <div className="ud-info-item"><span className="ud-lbl">ID</span><span className="ud-val">{profile.uniqueId || "--"}</span></div>
                       <div className="ud-info-item"><span className="ud-lbl">Height</span><span className="ud-val">{profile.height ? `${profile.height} cm` : "--"}</span></div>
