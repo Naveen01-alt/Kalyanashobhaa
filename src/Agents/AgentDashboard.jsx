@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { 
   Users, CreditCard, Heart, LogOut, Link as LinkIcon, 
   Plus, X, Clock, ChevronRight, Activity, Bell
@@ -48,7 +49,6 @@ const AgentDashboard = () => {
   // 1. State
   const [token, setToken] = useState(localStorage.getItem('agentToken'));
   const [agentInfo, setAgentInfo] = useState(JSON.parse(localStorage.getItem('agentInfo') || 'null'));
-
   const [activeTab, setActiveTab] = useState('overview'); 
   const [stats, setStats] = useState({ totalReferrals: 0, paidReferrals: 0, pendingApprovals: 0 });
   const [usersList, setUsersList] = useState([]);
@@ -76,8 +76,12 @@ const AgentDashboard = () => {
     jobRole: '', companyName: '', annualIncome: '',
     mobileNumber: '', email: '', password: ''
   });
+  
+  
 
   // 2. Effects
+  useEffect(()=>{setIsDrawerOpen(false);},
+[activeTab]);
   useEffect(() => {
     if (!token) {
       navigate('/agent/login', { replace: true });
@@ -440,7 +444,7 @@ const AgentDashboard = () => {
 
       {/* --- REGISTRATION DRAWER --- */}
       <div className={`ks-drawer-overlay ${isDrawerOpen ? 'open' : ''}`} onClick={() => setIsDrawerOpen(false)}></div>
-      <div className={`ks-drawer-panel ${isDrawerOpen ? 'open' : ''}`}>
+      <div className={`ks-drawer-panel ${isDrawerOpen ? 'open' : ''}`} >
         
         <div className="ks-drawer-header">
           <div><h2>New Registration</h2><p>Add new profile</p></div>

@@ -133,13 +133,25 @@ body {
 .ks-link-btn { background: none; border: none; color: var(--primary-red); text-decoration: underline; cursor: pointer; }
 
 /* --- DRAWER --- */
-.ks-drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; transition: 0.3s; z-index: 100; }
+.ks-drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); opacity: 0; visibility: hidden; backdrop-filter:blur(8px); z-index: 100; transition: 0.3s; pointer-events: none;animation: fadeIn 0.3s ease forwards; }
 .ks-drawer-panel { 
-  position: fixed; top: 0; right: 0; bottom: 0; width: 450px; background: white; 
-  transform: translateX(100%); transition: 0.3s; z-index: 101; display: flex; flex-direction: column; 
+  position: fixed; top: 50%; left:55%; transform: translate(-50%, -50%); scale:(0.95); bottom: 0; width: 800px;height: 900px; max-height: 1000px; overflow: auto; background: white; 
+   transition: 0.3s; z-index: 101; display: flex; flex-direction: column; padding: 20px; border-radius: 12px; visibility: hidden; animation: modalOpen 0.35s ease forwards;
 }
-.ks-drawer-overlay.open { opacity: 1; visibility: visible; }
-.ks-drawer-panel.open { transform: translateX(0); }
+@keyframes fadeIn{
+  to{
+    opacity: 5;
+  }
+} 
+@keyframes modalOpen {
+  to{
+    opacity: 5;
+    transform: translate(-50%, -50%)
+    scale(1);
+  }
+}
+.ks-drawer-overlay.open { opacity: 1; visibility: visible; align-items: center; pointer-events: auto; }
+.ks-drawer-panel.open { transform: translate(-50%, -50%) scale(1); opacity: 1; visibility: visible; }
 .ks-drawer-header { padding: 20px; background: var(--primary-red); color: white; display: flex; justify-content: space-between; }
 .ks-drawer-body { padding: 20px; overflow-y: auto; flex: 1; }
 .ks-drawer-footer { padding: 20px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 12px; }
@@ -184,7 +196,7 @@ body {
 
   /* 3. Bottom Navigation Bar */
   .ks-crm-sidebar {
-    flex-direction: row; width: 100%; height: var(--nav-height);
+    flex-direction: row; width: 90%; height: var(--nav-height);
     position: fixed; top: auto; bottom: 0; left: 0;
     border-right: none; border-top: 1px solid var(--border);
     padding: 0; box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
@@ -225,10 +237,10 @@ body {
   .ks-skeleton-grid { grid-template-columns: 1fr; }
 
   /* 5. Full Screen Drawer */
-  .ks-drawer-panel { width: 100%; }
+  .ks-drawer-panel {display: flex flex-directioncolumn; width: 110%; padding-top: 120px; padding-left: 10px; padding-right: 30px; padding-bottom: 50px; }
   .ks-form-grid { grid-template-columns: 1fr; }
   .ks-col-span-2 { grid-column: auto; }
-  .ks-drawer-footer { padding-bottom: 30px; }
+  .ks-drawer-footer { padding-bottom: 80px;  }
 
   /* 6. Refined Data Tables for Mobile */
   .ks-data-table-wrapper { border-radius: 8px; box-shadow: none; border: 1px solid #e2e8f0; }
