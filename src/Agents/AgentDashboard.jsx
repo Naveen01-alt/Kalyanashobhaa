@@ -6,7 +6,7 @@ import {
   Plus, X, Clock, ChevronRight, Activity, Bell
 } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css'; 
+import 'react-toastify/dist/ReactToastify.css';
 import './AgentPortal.css'; 
 
 const API_BASE = "https://kalyanashobha-back.vercel.app/api/agent";
