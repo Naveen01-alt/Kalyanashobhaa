@@ -227,7 +227,7 @@ body {
 
   /* 5. Full Screen Drawer */
   
-  .ks-drawer-panel {  width:  120vw; height: 100vh; max-height: 100vh;  flex-direction: column; transform: translate(100%);  display:flex; justify-content: flex-start; padding-right: 80px;  }
+  .ks-drawer-panel {  width:  120vw; height: 100vh; max-height: 100vh;  flex-direction: column; transform: translate(100%);  display:flex; justify-content: flex-start; padding-right: 60px;  }
   .ks-form-grid { grid-template-columns: 1fr; }
   .ks-col-span-2 { grid-column: auto; }
   .ks-drawer-footer { padding-bottom: 30px;  }
